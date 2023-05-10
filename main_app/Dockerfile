@@ -4,7 +4,9 @@ FROM python:3.8
 WORKDIR /app
 
 COPY requirements.txt .
-CMD sudo apt-get -y install libusb-1.0-0-dev
+RUN apt-get update
+RUN apt-get -y install libusb-1.0-0-dev
+RUN apt-get -y install libusb-1.0-0
 
 RUN pip3 install -r requirements.txt
 COPY . .

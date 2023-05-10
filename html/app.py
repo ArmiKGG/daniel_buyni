@@ -1,6 +1,4 @@
-import os
-
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request
 import requests
 
 app = Flask(__name__)
@@ -16,7 +14,7 @@ def handle_data():
     file = request.files['file']
     if file.filename.split(".")[-1] == "wav":
         files = {'file': file.stream.read()}
-        response = requests.post("http://localhost:5000/html", files=files)
+        response = requests.post("http://host.docker.internal:5000/html", files=files)
         return response.text
     return "<h1>we only support .wav files</h1>"
 
